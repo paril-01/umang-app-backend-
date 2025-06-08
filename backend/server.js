@@ -1,16 +1,11 @@
 const express = require('express');
+const cors = require('cors');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 const app = express();
-const port = 3000;
 
-// Middleware to parse JSON
+app.use(cors());
 app.use(express.json());
+app.use('/api', feedbackRoutes);
 
-// Basic route
-app.get('/', (req, res) => {
-  res.send('Hello, Express!');
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+const PORT = 3001;
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
